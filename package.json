@@ -1,25 +1,43 @@
 {
-  "name": "api_restful",
+  "name": "api_retos_salud",
   "version": "1.0.0",
-  "description": "Diseñar una API RESTFUL que permita gestionar el progreso de los usuarios en distintos retos de salud, tomando como base los datos de actividad física",
+  "description": "Diseñar una API RESTFUL que permita gestionar el progreso de los usuarios en distintos retos de salud, tomando como base los datos de actividad física.",
+
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: Ningún test especificado \" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AlejandroMoc/API_Restful.git"
   },
+
   "keywords": [],
-  "author": "",
+
+  "author": {
+    "name": "Alejandro Moctezuma",
+    "email": "moctezumaalejandro25@gmail.com",
+    "url": "https://github.com/AlejandroMoc"
+  },
+  
   "license": "ISC",
   "type": "commonjs",
+
   "bugs": {
     "url": "https://github.com/AlejandroMoc/API_Restful/issues"
   },
+
   "homepage": "https://github.com/AlejandroMoc/API_Restful#readme",
+
   "dependencies": {
     "express": "^5.1.0",
     "mongoose": "^8.17.0"
+  },
+
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
