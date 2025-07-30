@@ -1,0 +1,24 @@
+{
+  "name": "api_restful",
+  "version": "1.0.0",
+  "description": "Diseñar una API RESTFUL que permita gestionar el progreso de los usuarios en distintos retos de salud, tomando como base los datos de actividad física",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlejandroMoc/API_Restful.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AlejandroMoc/API_Restful/issues"
+  },
+  "homepage": "https://github.com/AlejandroMoc/API_Restful#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
