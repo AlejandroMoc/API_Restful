@@ -16,8 +16,19 @@ const ChallengeSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    // TODO meta a cumplir
-    // type: {},
+    goal: {
+        type: Number,
+        required: true,
+    },
+    goalType: {
+        type: String,
+        enum: ['accumulative', 'daily'],
+        required: true,
+    },
+    users: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 module.exports = mongoose.model('Challenge', ChallengeSchema);

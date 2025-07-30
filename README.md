@@ -3,16 +3,27 @@ Diseñar una API RESTFUL que permita gestionar el progreso de los usuarios en di
 
 ## Proceso de instalación
 
-<!-- npm init -y
+<!--
+npm init -y
 npm install express
  -->
 
 Para ejecutar la API sigue los siguientes pasos:
 
-```
-# Clonar repositorio
-git clone https://github.com/AlejandroMoc/API_Restful
+Instala MongoDB y crea la base de datos correspondiente
 
+```
+mongosh
+use retos_salud
+```
+
+Clona el repositorio
+
+```
+git clone https://github.com/AlejandroMoc/API_Restful
+```
+
+```
 # Navegar a la carpeta clonada
 cd API_Restful
 

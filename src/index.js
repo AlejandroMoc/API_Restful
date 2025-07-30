@@ -11,7 +11,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('json spaces', 2)
 
 // Connectar a MongoDB
-//dbConnection();
+dbConnection();
 
 // Middleware p/JSON
 app.use(express.json());

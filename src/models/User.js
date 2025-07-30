@@ -12,6 +12,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    challenges: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Challenge'
+    }]
 });
 
 module.exports = mongoose.model('User', UserSchema);
