@@ -4,14 +4,25 @@ const Challenge = require('../models/Challenge');
 
 // Routes - Challenges
 
-router.get('/create', async (req, res) => {
-    try {
-        res.send('Registro de desafío');
-        //res.status(201).send('Reto creado');
+// Registrar un reto
+router.post('/create', async (req, res) => {
+    const { name, description, startDate, endDate , goalNumber, goalType} = req.body;
 
+    try {
+        const newChallenge = new Challenge({
+            name,
+            description,
+            startDate,
+            endDate,
+            goalNumber,
+            goalType,
+            users: []
+        });
+        await newChallenge.save();
+        //res.status(201).json(newChallenge);
+        res.status(201).send('Reto creado');
     } catch (error) {
-        console.error('Error al registrar un desafío:', error);
-        process.exit(1);
+        res.status(400).json({ error: error.message });
     }
 });
 

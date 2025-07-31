@@ -35,11 +35,13 @@ npm run dev
 
 Para probar la API, es posible usar PostMan de la siguiente manera.
 
+### Usuarios
+
 Para probar el registro de usuarios, colocar los siguientes datos:
 
 ```
 ## Seleccionar POST y colocar URL
-http://localhost:3000/api/users
+http://localhost:3000/api/users/create
 
 
 ## En Body, seleccionar Raw y pegar el contenido
@@ -47,7 +49,36 @@ http://localhost:3000/api/users
     "name": "Pedro Equis",
     "email": "pedrox@sitio.com"
 }
+```
 
+Presionar en el botón "Send".
 Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
+
+
+### Retos
+
+Para probar el registro de usuarios, colocar los siguientes datos.
+
+El tipo de reto, goalType, debe ser "daily" o "accumulative".
+
 ```
+## Seleccionar POST y colocar URL
+http://localhost:3000/api/challenges/create
+
+
+## En Body, seleccionar Raw y pegar el contenido
+{
+    "id": "01",
+    "name": "Comer fruta",
+    "description" : "Comer dos frutas diariamente",
+    "startDate": "2025-07-30T00:00:00.000Z",
+    "endDate": "2025-08-01T00:00:00.000Z",
+    "goalNumber": "2",
+    "goalType": "daily"
+}
+```
+
+Presionar en el botón "Send".
+Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
+

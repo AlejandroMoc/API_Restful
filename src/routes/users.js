@@ -4,11 +4,12 @@ const User = require('../models/User');
 
 // Routes - Users
 
+// Registrar un usuario
 router.post('/signup', async (req, res) => {
     const { name, email } = req.body;
 
     try {
-        const newUser = new User({ name, email });
+        const newUser = new User({name, email });
         await newUser.save();
         //res.status(201).json(newUser);
         res.status(201).send('Usuario registrado');
