@@ -47,7 +47,7 @@ Para probar el registro de usuarios, colocar los siguientes datos:
 ## Seleccionar POST y colocar URL
 http://localhost:3000/api/users/signup
 
-## En Body, seleccionar Raw y pegar el contenido
+## En Body, seleccionar Raw y pegar el contenido.
 {
     "name": "Pedro Equis",
     "email": "pedrox@sitio.com"
@@ -57,6 +57,13 @@ http://localhost:3000/api/users/signup
 Presionar en el botón "Send".
 Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
+### Eliminación de usuarios
+```
+## Seleccionar DELETE y colocar URL con el usuario correspondiente.
+## En Body, seleccionar None como parámetros.
+http://localhost:3000/api/users/delete/:userId
+
+```
 
 ### Retos
 
@@ -67,14 +74,12 @@ Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
  - El tipo de reto, "goalType", debe ser "daily" o "accumulative".
  - El número que se debe alcanzar en el reto se define por "goalNumber".
 
-
 ```
 ## Seleccionar POST y colocar URL
 http://localhost:3000/api/challenges/create
 
 ## En Body, seleccionar Raw y pegar el contenido
 {
-    "id": "01",
     "name": "Comer fruta",
     "description" : "Comer dos frutas diariamente por una semana.",
     "numberDays": "7",

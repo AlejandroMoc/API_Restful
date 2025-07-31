@@ -22,13 +22,14 @@ const ChallengeSchema = new mongoose.Schema({
     },
 
     // Retos
-    // goalType es el tipo de reto
-    // goalNumber representa la cantidad almacenada para el reto
+
+    // Tipo de reto
     goalType: {
         type: String,
         enum: ['accumulative', 'daily'],
         required: true,
     },
+    // Cantidad almacenada para el reto
     goalNumber: {
         type: Number,
         required: true,
