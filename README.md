@@ -23,6 +23,8 @@ Clona el repositorio
 git clone https://github.com/AlejandroMoc/API_Restful
 ```
 
+Instala NodeJS y Express e inicia la API
+
 ```
 # Navegar a la carpeta clonada
 cd API_Restful
@@ -37,12 +39,13 @@ Para probar la API, es posible usar PostMan de la siguiente manera.
 
 ### Usuarios
 
+#### Registro de usuarios
+
 Para probar el registro de usuarios, colocar los siguientes datos:
 
 ```
 ## Seleccionar POST y colocar URL
-http://localhost:3000/api/users/create
-
+http://localhost:3000/api/users/signup
 
 ## En Body, seleccionar Raw y pegar el contenido
 {
@@ -55,30 +58,35 @@ Presionar en el botón "Send".
 Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
 
-
 ### Retos
 
-Para probar el registro de usuarios, colocar los siguientes datos.
+#### Registro de retos
 
-El tipo de reto, goalType, debe ser "daily" o "accumulative".
+ - El nombre y descripción del reto se definen por "name" y "description".
+ - La cantidad de días que dura un reto se define por "numberDays".
+ - El tipo de reto, "goalType", debe ser "daily" o "accumulative".
+ - El número que se debe alcanzar en el reto se define por "goalNumber".
+
 
 ```
 ## Seleccionar POST y colocar URL
 http://localhost:3000/api/challenges/create
 
-
 ## En Body, seleccionar Raw y pegar el contenido
 {
     "id": "01",
     "name": "Comer fruta",
-    "description" : "Comer dos frutas diariamente",
-    "startDate": "2025-07-30T00:00:00.000Z",
-    "endDate": "2025-08-01T00:00:00.000Z",
-    "goalNumber": "2",
-    "goalType": "daily"
+    "description" : "Comer dos frutas diariamente por una semana.",
+    "numberDays": "7",
+    
+    "goalType": "daily",
+    "goalNumber": "2"
 }
 ```
 
 Presionar en el botón "Send".
 Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
+#### Registrar un usuario en un reto
+
+Lorem Ipsum

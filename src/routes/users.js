@@ -14,19 +14,24 @@ router.post('/signup', async (req, res) => {
         //res.status(201).json(newUser);
         res.status(201).send('Usuario registrado');
     } catch (error) {
-        res.status(400).json({ error: 'Error al registrar un usuario: ' + error.message });
+        console.error('Error al crear un usuario:', error);
+        res.status(400).json({ error: 'Error al crear un usuario: ' + error.message });
     }
 });
 
-router.get('/delete', async (req, res) => {
+// Eliminar un usuario por su ID
+router.get('/delete/:userId', async (req, res) => {
+    const { userId } = req.params;
+
     try {
         res.send('Eliminar usuario');
         //res.status(201).send('Usuario eliminado');
 
     } catch (error) {
         console.error('Error al eliminar un usuario:', error);
-        process.exit(1);
+        res.status(400).json({ error: 'Error al eliminar un usuario: ' + error.message });
     }
 });
+
 
 module.exports = router;

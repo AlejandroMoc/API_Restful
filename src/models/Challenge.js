@@ -15,29 +15,25 @@ const ChallengeSchema = new mongoose.Schema({
         required: true,
     },
 
-    // Fechas de inicio y fin esperadas
-    startDate: {
-        type: Date,
-        required: true,
-    },
-    endDate: {
-        type: Date,
+    // Cantidad de días
+    numberDays: {
+        type: Number,
         required: true,
     },
 
     // Retos
-    // goalNumber representa la cantidad almacenada para el reto
     // goalType es el tipo de reto
-    goalNumber: {
-        type: Number,
-        required: true,
-    },
+    // goalNumber representa la cantidad almacenada para el reto
     goalType: {
         type: String,
         enum: ['accumulative', 'daily'],
         required: true,
     },
-
+    goalNumber: {
+        type: Number,
+        required: true,
+    },
+    
     // Usuarios
     users: [{
         type: mongoose.Schema.Types.ObjectId,
