@@ -14,7 +14,6 @@ router.post('/create', async (req, res) => {
             description,
             
             numberDays,
-            
             goalType,
             goalNumber,
 
