@@ -10,7 +10,7 @@ npm install express
 
 Para ejecutar la API sigue los siguientes pasos:
 
-Instala MongoDB y crea la base de datos correspondiente
+Instala MongoDB y crea/usa la base de datos correspondiente
 
 ```
 mongosh
@@ -27,6 +27,27 @@ git clone https://github.com/AlejandroMoc/API_Restful
 # Navegar a la carpeta clonada
 cd API_Restful
 
-# Iniciar index.js
-node src/index.js
+# Iniciar la API
+npm run dev
+```
+
+## Probar la API
+
+Para probar la API, es posible usar PostMan de la siguiente manera.
+
+Para probar el registro de usuarios, colocar los siguientes datos:
+
+```
+## Seleccionar POST y colocar URL
+http://localhost:3000/api/users
+
+
+## En Body, seleccionar Raw y pegar el contenido
+{
+    "name": "Pedro Equis",
+    "email": "pedrox@sitio.com"
+}
+
+Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
+
 ```
