@@ -19,16 +19,23 @@ const ActivitySchema = new mongoose.Schema({
         required: true,
     },
 
-    // Fechas de inicio y fin
-    startDate: {
+    // Fecha de actividad (el día actual)
+    date: {
         type: Date,
         required: true,
     },
-    endDate: {
-        type: Date,
+
+    //Tipo y valor de actividad
+    //El tipo puede ser steps, sleep o cardio_points
+    type: {
+        type: String,
+        enum: ['steps', 'sleep', 'cardio_points'],
         required: true,
-    }
-    
+    },
+    value: {
+        type: Number,
+        required: true,
+    },
 });
 
 module.exports = mongoose.model('Activity', ActivitySchema);

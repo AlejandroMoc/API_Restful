@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const ChallengeSchema = new mongoose.Schema({
 
-    // Nombre y descripción
+    // Nombre, descripción y tipo
     name: {
         type: String,
         required: true,
@@ -14,14 +14,17 @@ const ChallengeSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    type: {
+        type: String,
+        enum: ['steps', 'sleep', 'cardio_points'],
+        required: true,
+    },
 
     // Cantidad de días
     numberDays: {
         type: Number,
         required: true,
     },
-
-    // Retos
 
     // Tipo de reto
     goalType: {
@@ -34,12 +37,6 @@ const ChallengeSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    
-    // Usuarios
-    users: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }]
 });
 
 module.exports = mongoose.model('Challenge', ChallengeSchema);

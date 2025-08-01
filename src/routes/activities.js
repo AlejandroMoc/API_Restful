@@ -1,20 +1,51 @@
-const { Router } = require('express');
-const router = Router();
+// routes/activityRoutes.js
+const express = require('express');
+const Activity = require('../models/activityModel');
+const User = require('../models/userModel');
+const Challenge = require('../models/challengeModel');
 
-// Registrar actividad diaria TODO
-router.post('/:userId/activity', async (req, res) => {
-    const { userId } = req.params;
+const router = express.Router();
 
-    // type debe ser "steps", "sleep" o "cardio_points"
-    const { type, value } = req.body; 
+// Registrar actividad diaria
+router.post('/register', async (req, res) => {
+    const { userId, challengeId, date, type, value} = req.body;
 
     try {
-        // TODO Lógica
-        // Solo poder registrar una entrada por tipo por día
+        // Verificar existencia de usuario y reto
+        const user = await User.findById(userId);
+        const challenge = await Challenge.findById(challengeId);
 
-        res.status(200).json({ message: 'Actividad registrada' });
+        if (!user || !challenge) {
+            return res.status(404).json({ error: 'Usuario o reto no encontrado' });
+        }
+
+        // Verificar si el tipo de actividad coincide con el tipo del reto
+        if (challenge.type !== type) {
+            return res.status(400).json({ error: 'El tipo de actividad no coincide con el tipo del reto' });
+        }
+
+        // Verificar si ya existe una entrada para el mismo día y tipo
+        const existingActivity = await Activity.findOne({ user: userId, challenge: challengeId, date });
+        if (existingActivity) {
+            return res.status(400).json({ error: 'Ya se registró una actividad para este reto este día' });
+        }
+
+        // Finalmente, crear nueva actividad
+        const newActivity = new Activity({
+            user: userId,
+            challenge: challengeId,
+            date,
+
+            type,
+            value,
+        });
+
+        await newActivity.save();
+        res.status(201).json({ message: 'Actividad registrada', activity: newActivity });
     } catch (error) {
-        console.error('Error al registrar act. de usuario:', error);
-        res.status(400).json({ error: 'Error al registrar act. de usuario: ' + error.message });
+        console.error('Error al registrar actividad:', error);
+        res.status(500).json({ error: 'Error al registrar actividad' });
     }
 });
+
+module.exports = router;
