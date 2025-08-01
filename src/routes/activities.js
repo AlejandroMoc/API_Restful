@@ -1,8 +1,8 @@
 // routes/activityRoutes.js
 const express = require('express');
-const Activity = require('../models/activityModel');
-const User = require('../models/userModel');
-const Challenge = require('../models/challengeModel');
+const Activity = require('../models/Activity');
+const User = require('../models/User');
+const Challenge = require('../models/Challenge');
 
 const router = express.Router();
 

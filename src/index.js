@@ -1,15 +1,17 @@
 const express = require('express');
 const app = express();
 
-//Archivos y configuración
+//Archivos
 const dbConnection = require('./database');
 const userRoutes = require('./routes/users');
 const challengeRoutes = require('./routes/challenges');
+const activityRoutes = require('./routes/activities');
 
+// Configuración
 app.set('port', process.env.PORT || 3000);
-app.set('json spaces', 2)
+app.set('json spaces', 2);
 
-// Connectar a MongoDB
+// Conectar a MongoDB
 dbConnection();
 
 // Middleware p/JSON
@@ -18,6 +20,7 @@ app.use(express.json());
 // Rutas
 app.use('/api/users/', userRoutes);
 app.use('/api/challenges/', challengeRoutes);
+app.use('/api/activities/', activityRoutes);
 
 // Escuchar al servidor en el puerto
 app.listen(app.get('port'), () => {

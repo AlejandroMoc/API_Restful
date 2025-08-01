@@ -53,7 +53,7 @@ Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 # Seleccionar POST y colocar URL
 http://localhost:3000/api/challenges/create
 
-# En Body, seleccionar Raw y pegar el contenido
+# En Body, selecciona Raw y pegar el contenido
 {
     "name": "Caminar más",
     "description" : "Dar 5000 pasos diarios por una semana.",
@@ -69,7 +69,21 @@ http://localhost:3000/api/challenges/create
 Presionar en el botón "Send".
 Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
-### Registrar un usuario en un reto
+### Eliminar un reto
+
+- ":id" representa el ID del reto a eliminar.
+
+```
+# Selecciona DELETE y coloca la URL. En Body, selecciona None
+http://localhost:3000/api/challenges/delete/:id
+
+# Por ejemplo, si el ID es 688c21220143a333e8f61366
+http://localhost:3000/api/challenges/delete/688c21220143a333e8f61366
+```
+Presionar en el botón "Send".
+Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
+
+### Registrar un usuario en una actividad
 
 - El "userId" es el ID del usuario
 - El "challengeId" es el ID del reto
