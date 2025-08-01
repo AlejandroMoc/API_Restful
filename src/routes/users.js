@@ -12,6 +12,12 @@ router.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
+        // Verificar si un usuario con ese correo ya existe
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ error: 'El correo electrónico ya está registrado' });
+        }
+
         const newUser = new User({name, email, password });
         await newUser.save();
         res.status(201).json({message: 'Usuario registrado', user: newUser});

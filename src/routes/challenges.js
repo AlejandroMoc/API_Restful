@@ -10,6 +10,12 @@ router.post('/create', async (req, res) => {
     const { name, description, type, numberDays, goalNumber, goalType} = req.body;
 
     try {
+         // Verificar si un reto con ese nombre ya existe
+         const existingChallenge = await Challenge.findOne({ name });
+         if (existingChallenge) {
+             return res.status(400).json({ error: 'Ya existe un reto con este nombre' });
+         }
+
         const newChallenge = new Challenge({
             name,
             description,
