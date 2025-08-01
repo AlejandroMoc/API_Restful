@@ -59,10 +59,10 @@ http://localhost:3000/api/challenges/create
     "description" : "Dar 5000 pasos diarios por una semana.",
 
     "type": "steps",
-    "numberDays": "7",
+    "numberDays": 7,
 
     "goalType": "daily",
-    "goalNumber": "2"
+    "goalNumber": 5000
 }
 ```
 
@@ -83,13 +83,14 @@ http://localhost:3000/api/challenges/delete/688c21220143a333e8f61366
 Presionar en el botón "Send".
 Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
-### Registrar un usuario en una actividad
+## Actividades
 
-- El "userId" es el ID del usuario
-- El "challengeId" es el ID del reto
-- La fecha registrada para la actividad se representa con "date"
-- "Value" y "type" representan el valor y tipo de la actividad que se registra para el reto ("challenge") especificado.
-- "Type" solo puede ser "steps", "sleep" o "cardio_points"
+### Registrar una actividad para un usuario
+
+ - El "userId" es el ID del usuario.
+ - La fecha registrada para la actividad se representa con "date".
+ - "Value" y "type" representan el valor y tipo de la actividad que se registra.
+ - "Type" solo puede ser "steps", "sleep" o "cardio_points".
 
 ```
 # Seleccionar POST y colocar URL
@@ -98,9 +99,7 @@ http://localhost:3000/api/activities/register
 # En Body, seleccionar Raw y pegar el contenido
 {
     "userId": "ID_DEL_USUARIO",
-    "challengeId": "ID_DEL_RETO",
     "date": "2025-07-31",
-
     "type": "steps",
     "value": 7500
     
