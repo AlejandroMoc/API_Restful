@@ -2,11 +2,12 @@ const express = require('express');
 const app = express();
 
 //Archivos
-const dbConnection = require('./database');
 const userRoutes = require('./routes/users');
 const challengeRoutes = require('./routes/challenges');
 const activityRoutes = require('./routes/activities');
-const {scheduleTask} = require('./scheduledTask');
+
+const dbConnection = require('./utils/database');
+const {scheduleTask} = require('./utils/scheduledTask');
 
 // Configuración
 app.set('port', process.env.PORT || 3000);
