@@ -2,40 +2,26 @@
 const express = require('express');
 const Activity = require('../models/Activity');
 const User = require('../models/User');
-const Challenge = require('../models/Challenge');
 
 const router = express.Router();
 
 // Registrar actividad diaria
 router.post('/register', async (req, res) => {
-    const { userId, challengeId, date, type, value} = req.body;
+    const { userId, date, type, value} = req.body;
 
     try {
-        // Verificar existencia de usuario y reto
+        // Verificar existencia de usuario
         const user = await User.findById(userId);
-        const challenge = await Challenge.findById(challengeId);
 
-        if (!user || !challenge) {
-            return res.status(404).json({ error: 'Usuario o reto no encontrado' });
-        }
-
-        // Verificar si el tipo de actividad coincide con el tipo del reto
-        if (challenge.type !== type) {
-            return res.status(400).json({ error: 'El tipo de actividad no coincide con el tipo del reto' });
-        }
-
-        // Verificar si ya existe una entrada para el mismo día y tipo
-        const existingActivity = await Activity.findOne({ user: userId, challenge: challengeId, date });
-        if (existingActivity) {
-            return res.status(400).json({ error: 'Ya se registró una actividad para este reto este día' });
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
         }
 
         // Finalmente, crear nueva actividad
         const newActivity = new Activity({
             user: userId,
-            challenge: challengeId,
             date,
-
+            
             type,
             value,
         });

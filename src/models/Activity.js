@@ -1,25 +1,23 @@
 const mongoose = require('mongoose');
 const User = require('./User');
-const Challenge = require('./Challenge');
 
-// Modelo para Actividad
-// Es decir, relación entre usuario y reto
+// Modelo para Actividad (actualización)
+// Esta corresponde a un registro que se realiza diariamente
+// para un usuario y un tipo de valor
+
+// El tipo puede ser "steps", "sleep" o "cardio_points"
 
 const ActivitySchema = new mongoose.Schema({
 
-    // Usuario y reto
+    // Usuario
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
     },
-    challenge: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Challenge',
-        required: true,
-    },
 
-    // Fecha de actividad (el día actual)
+    // Fecha de actividad
+    // (el día en que se registra la actualización)
     date: {
         type: Date,
         required: true,
