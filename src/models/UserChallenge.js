@@ -25,7 +25,11 @@ const UserChallengeSchema = new mongoose.Schema({
     default: false,
   },
 
-  // Fecha
+  // Fechas
+  startDate: {
+    type: Date,
+    required: true
+  },
   completionDate: {
     type: Date,
     default: null,
