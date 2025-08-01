@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 
 //Archivos y configuración
-const indexjs = require('./routes/index');
 const dbConnection = require('./database');
 const userRoutes = require('./routes/users');
 const challengeRoutes = require('./routes/challenges');
@@ -17,7 +16,6 @@ dbConnection();
 app.use(express.json());
 
 // Rutas
-app.use(indexjs);
 app.use('/api/users/', userRoutes);
 app.use('/api/challenges/', challengeRoutes);
 

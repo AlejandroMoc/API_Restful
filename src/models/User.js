@@ -17,11 +17,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
-    challenges: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Challenge'
-    }]
 });
 
 // Antes de guardar contraseña, hashear

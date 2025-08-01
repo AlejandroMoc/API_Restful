@@ -35,4 +35,4 @@ npm run dev
 
 ## Uso de la API
 
-La documentación sobre los endpoints puede encontrarse [aquí](API.md).
+La documentación sobre los endpoints puede encontrarse [aquí](doc/API.md).

@@ -1,8 +1,9 @@
 const { Router } = require('express');
 const router = Router();
 const bcrypt = require('bcrypt');
+
 const User = require('../models/User');
-const Challenge = require('../models/Challenge');
+const Activity = require('../models/Activity');
 
 // Routes - Users
 
@@ -21,32 +22,6 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-// Eliminar un usuario por su ID
-router.delete('/delete/:userId', async (req, res) => {
-    const { userId } = req.params;
-
-    try {
-        // Encontrar al usuario
-        const deletedUser = await User.findByIdAndDelete(userId);
-
-        // Verificar existencia del usuario
-        if (!deletedUser) {
-            return res.status(404).json({ error: 'Usuario no encontrado' });
-        }
-
-        // Eliminar el usuario de sus retos
-        await Challenge.updateMany(
-            { users: userId },
-            { $pull: { users: userId } }
-        );
-
-        res.status(200).json({ message: 'Usuario eliminado', user: deletedUser });
-    } catch (error) {
-        console.error('Error al eliminar un usuario:', error);
-        res.status(400).json({ error: 'Error al eliminar un usuario: ' + error.message });
-    }
-});
-
 // Eliminar un usuario por su correo y contraseña
 router.delete('/delete', async (req, res) => {
     const { email, password } = req.body;
@@ -58,20 +33,17 @@ router.delete('/delete', async (req, res) => {
             return res.status(404).json({ error: 'Usuario no encontrado' });
         }
 
-        // Verificar contraseña
+        // Verificar la contraseña
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
 
+        // Eliminar actividades de usuario
+        await Activity.deleteMany({ user: user._id });
+
         // Eliminar usuario
         await User.findByIdAndDelete(user._id);
-
-        // Eliminar usuario de retos
-        await Challenge.updateMany(
-            { users: user._id },
-            { $pull: { users: user._id } }
-        );
 
         res.status(200).json({ message: 'Usuario eliminado' });
     } catch (error) {
@@ -79,24 +51,5 @@ router.delete('/delete', async (req, res) => {
         res.status(400).json({ error: 'Error al eliminar un usuario: ' + error.message });
     }
 });
-
-// Registrar actividad diaria TODO
-router.post('/:userId/activity', async (req, res) => {
-    const { userId } = req.params;
-
-    // type debe ser "steps", "sleep" o "cardio_points"
-    const { type, value } = req.body; 
-
-    try {
-        // TODO Lógica
-        // Solo poder registrar una entrada por tipo por día
-
-        res.status(200).json({ message: 'Actividad registrada' });
-    } catch (error) {
-        console.error('Error al registrar act. de usuario:', error);
-        res.status(400).json({ error: 'Error al registrar act. de usuario: ' + error.message });
-    }
-});
-
 
 module.exports = router;

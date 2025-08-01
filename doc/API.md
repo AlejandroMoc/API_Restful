@@ -69,4 +69,20 @@ Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
 ### Registrar un usuario en un reto
 
-Lorem Ipsum
+Para registrar una actividad en un día para un usuario, realizar lo siguiente:
+
+```
+# Seleccionar POST y colocar URL
+http://localhost:3000/api/activities/register
+
+# En Body, seleccionar Raw y pegar el contenido
+{
+    "userId": "ID_DEL_USUARIO",
+    "challengeId": "ID_DEL_RETO",
+    "date": "2025-07-31",
+    
+    "steps": 10000,
+    "sleep": 6,
+    "cardioPoints": 30
+}
+```
