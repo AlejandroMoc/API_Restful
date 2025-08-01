@@ -6,13 +6,15 @@ const dbConnection = require('./database');
 const userRoutes = require('./routes/users');
 const challengeRoutes = require('./routes/challenges');
 const activityRoutes = require('./routes/activities');
+const {scheduleTask} = require('./scheduledTask');
 
 // Configuración
 app.set('port', process.env.PORT || 3000);
 app.set('json spaces', 2);
 
-// Conectar a MongoDB
+// Conectar a MongoDB e iniciar evento
 dbConnection();
+scheduleTask();
 
 // Middleware p/JSON
 app.use(express.json());
