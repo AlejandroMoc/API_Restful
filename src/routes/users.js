@@ -4,8 +4,37 @@ const bcrypt = require('bcrypt');
 
 const User = require('../models/User');
 const Activity = require('../models/Activity');
+const Challenge = require('../models/Challenge');
+const UserChallenge = require('../models/UserChallenge');
 
 // Routes - Users
+
+// Obtener retos para el usuario
+router.get('/:userId/challenges', async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        // Encontrar todos los UserChallenge p/el usuario dado
+        const userChallenges = await UserChallenge.find({ user: userId });
+
+        // Mapear cada UserChallenge a un objeto
+        const challengesWithProgress = await Promise.all(
+            userChallenges.map(async (userChallenge) => {
+                const challenge = await Challenge.findById(userChallenge.challenge);
+                // Devolver objeto (que tiene Challenges y Progresos)
+                return {
+                    challenge,
+                    progress: userChallenge.progress,
+                };
+            })
+        );
+
+        res.status(200).json(challengesWithProgress);
+    } catch (error) {
+        console.error('Error al obtener retos del usuario:', error);
+        res.status(500).json({ error: 'Error al obtener retos del usuario' });
+    }
+});
 
 // Registrar un usuario
 router.post('/signup', async (req, res) => {

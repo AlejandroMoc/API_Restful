@@ -24,7 +24,7 @@ Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
 ## Eliminación de usuarios
 
-Para probar la eliminación de usuarios, se necesita el nombre de usuario y contraseña.
+Para eliminar un usuario, se necesita el correo y contraseña.
 
 ```
 # Seleccionar DELETE y colocar URL.
@@ -36,6 +36,20 @@ http://localhost:3000/api/users/delete/
     "email": "pedrox@sitio.com",
     "password": "PedroEquis654"
 }
+```
+Presionar en el botón "Send".
+Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
+
+### Consultar retos de un usuario
+
+Para consultar los retos de un usuario, se necesita el ID del usuario.
+
+```
+# Selecciona GET y coloca la URL
+http://localhost:3000/api/users/:userId/challenges
+
+# Por ejemplo, si el ID del usuario es 688c21220143a333e8f61366
+http://localhost:3000/api/users/688c21220143a333e8f61366/challenges
 ```
 Presionar en el botón "Send".
 Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
