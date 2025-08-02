@@ -97,6 +97,23 @@ http://localhost:3000/api/challenges/delete/688c21220143a333e8f61366
 Presionar en el botón "Send".
 Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
+### Leaderboard de un reto
+
+Obtiene el ranking de usuarios para un reto específico ordenado por progreso.
+
+- ":challengeId" se refiere al ID del reto
+
+```
+# Selecciona GET y coloca la URL
+http://localhost:3000/api/challenges/:challengeId/leaderboard
+
+# Ejemplo con ID 688c21220143a333e8f61366
+http://localhost:3000/api/challenges/688c21220143a333e8f61366/leaderboard
+```
+
+Presionar en el botón "Send".
+Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
+
 ## Actividades
 
 ### Registrar una actividad para un usuario

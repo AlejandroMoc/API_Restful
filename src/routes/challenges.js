@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const Challenge = require('../models/Challenge');
 const Activity = require('../models/Activity');
+const UserChallenge = require('../models/UserChallenge');
 
 // Routes - Challenges
 
@@ -35,20 +36,30 @@ router.post('/create', async (req, res) => {
     }
 });
 
-// Eliminar un reto
-router.delete('/delete/:id', async (req, res) => {
-    const {id} = req.params;
+// Obtener leaderboard de un reto
+router.get('/:challengeId/leaderboard', async (req, res) => {
+    const { challengeId } = req.params;
+
     try {
-        // Eliminar actividades con id del reto
-        await Activity.deleteMany({ challenge: id });
+        // Encontrar el reto
+        const challenge = await Challenge.findById(challengeId);
+        if (!challenge) {
+            return res.status(404).json({ error: 'Reto no encontrado' });
+        }
 
-        // Eliminar el reto
-        await Challenge.findByIdAndDelete(id);
+        // Encontrar todos los UserChallenge para ese reto, ordenados por progreso
+        const userChallenges = await UserChallenge.find({ challenge: challengeId }).sort({ progress: -1 });
 
-        res.status(200).send({ message: 'Reto eliminado' });
+        // Mapear los UserChallenge a un formato más sencillo
+        const leaderboard = userChallenges.map(uc => ({
+            user: uc.user,
+            progress: uc.progress
+        }));
+
+        res.status(200).json(leaderboard);
     } catch (error) {
-        console.error('Error al eliminar el reto:', error);
-        res.status(500).json({ error: 'Error al eliminar el reto: ' + error.message });
+        console.error('Error al obtener leaderboard del reto:', error);
+        res.status(500).json({ error: 'Error al obtener leaderboard del reto' });
     }
 });
 
